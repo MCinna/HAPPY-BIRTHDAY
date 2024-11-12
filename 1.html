@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffefd5;
+        }
+        .container {
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em;
+            color: #ff4500;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: #fff;
+            background-color: #ff4500;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #ff6347;
+        }
+
+        /* Gift box modal */
+        .gift-modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            align-items: center;
+            justify-content: center;
+        }
+        .gift-box {
+            width: 150px;
+            height: 150px;
+            background-color: #ff69b4;
+            border: 4px solid #d81b60;
+            position: relative;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .gift-box::before, .gift-box::after {
+            content: "";
+            position: absolute;
+            background-color: #d81b60;
+        }
+        .gift-box::before {
+            width: 100%;
+            height: 20px;
+            top: 65px;
+        }
+        .gift-box::after {
+            width: 20px;
+            height: 100%;
+            left: 65px;
+        }
+        .gift-box:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s;
+        }
+
+        /* Video modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 80%;
+            text-align: center;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #aaa;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Happy Birthday!</h1>
+        <div class="button" onclick="showGift()">Click Me</div>
+    </div>
+
+    <!-- Gift box modal -->
+    <div id="giftModal" class="gift-modal" onclick="showVideo()">
+        <div class="gift-box"></div>
+    </div>
+
+    <!-- Video modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <!-- YouTube Embed -->
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/1NhlsrjQGg4?si=IMs-BFGZGHw0_bC2" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        // Show the gift box modal
+        function showGift() {
+            document.getElementById("giftModal").style.display = "flex";
+        }
+
+        // Show the video modal when the gift box is clicked
+        function showVideo() {
+            document.getElementById("giftModal").style.display = "none";
+            document.getElementById("myModal").style.display = "flex";
+        }
+
+        // Close the video modal
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        // Close the modal if clicked outside the modal content
+        window.onclick = function(event) {
+            var modal = document.getElementById("myModal");
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
